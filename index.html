@@ -11,12 +11,15 @@
 </head>
 
 <body>
-    <div id="root"></div>
+    <div id="root" style=" margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;"></div>
 
     <script type="text/babel">
-        var score = 0;
-        var wicket = 0;
-
+        let score = 0;
+        let wicket = 0;
+        let hit = 0;
         const scorees = [];
         // const socreboard = () =>{
         //     reactcomponent.render(<App/>)
@@ -26,27 +29,50 @@
         //     console.log(score);
         // }
         function socreboard(num) {
-            if (wicket < 10) {
-                scorees.push(num);
+            // if (wicket < 10) {
+            //     scorees.push(num);
 
-                score += num;
-                console.log(scorees)
-                reactcomponent.render(<App />);
-            }
+            //     score += num;
+            //     console.log(scorees)
+            //     reactcomponent.render(<App />);
+            // }
+            hit = num
+            reactcomponent.render(<App />);
+            console.log(hit)
+
         }
         function wickets() {
-            if (wicket < 10) {
-                scorees.push("w")
-                wicket += 1;
-                console.log(scorees);
-                reactcomponent.render(<App />);
 
-            }
+
+            // if (wicket < 10) {
+            //     scorees.push("w")
+            //     wicket += 1;
+            //     console.log(scorees);
+            //     reactcomponent.render(<App />);
+
+            // }
+            hit = "w"
+            reactcomponent.render(<App />);
+
         }
         const  Result = () => (
             <div>
-           { scorees.map((sco) => (<span>{sco} </span>))}
+           { scorees.map((sco, index) => (
+            
+            <>
+            {index % 6 === 0?<br/>:null}
+            <span key ={index}>{sco === 0 ? <strong>.</strong>:sco} </span>&nbsp;&nbsp;</>))}
             </div>
+        )
+        function handler(event){
+            event.preventDefault();
+        }
+        const Form = () => (
+            <form onSubmit = {handler}>
+                <input value = {hit}/>    
+                <input />
+                <button>Submit</button>    
+            </form>
         )
         const ScoreBoardd = () => (
             <div>
@@ -67,7 +93,9 @@
                 <h1>Score Keeper</h1>
                 <h2>Score : {score}/{wicket}</h2>
                 <ScoreBoardd />
-                <Result />
+                <hr />
+                <Form />
+                <hr/>
             </>
 
         )
