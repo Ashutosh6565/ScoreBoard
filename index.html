@@ -1,11 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScoreBoard</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Score Board</title>
+
 </head>
+
 <body>
-    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        var score = 0;
+        var wicket = 0;
+
+        const scorees = [];
+        // const socreboard = () =>{
+        //     reactcomponent.render(<App/>)
+
+        //     score += 1;
+
+        //     console.log(score);
+        // }
+        function socreboard(num) {
+            if (wicket < 10) {
+                scorees.push(num);
+
+                score += num;
+                console.log(scorees)
+                reactcomponent.render(<App />);
+            }
+        }
+        function wickets() {
+            if (wicket < 10) {
+                scorees.push("w")
+                wicket += 1;
+                console.log(scorees);
+                reactcomponent.render(<App />);
+
+            }
+        }
+        const  Result = () => (
+            <div>
+           { scorees.map((sco) => (<span>{sco} </span>))}
+            </div>
+        )
+        const ScoreBoardd = () => (
+            <div>
+                <button onClick ={() => socreboard(0)}>0</button>
+                <button onClick={() => socreboard(1)}>1</button>
+                <button onClick={() => socreboard(2)}>2</button>
+                <button onClick={() => socreboard(3)}>3</button>
+                <button onClick={() => socreboard(4)}>4</button>
+                <button onClick={() => socreboard(5)}>5</button>
+                <button onClick={() => socreboard(6)}>6</button>
+                <button onClick={wickets}>Wicket</button>
+
+            </div>
+        )
+        const App = () => (
+            <>
+
+                <h1>Score Keeper</h1>
+                <h2>Score : {score}/{wicket}</h2>
+                <ScoreBoardd />
+                <Result />
+            </>
+
+        )
+        const reactcomponent = ReactDOM.createRoot(document.getElementById("root"))
+        reactcomponent.render(<App />);
+    </script>
+
 </body>
+
 </html>
